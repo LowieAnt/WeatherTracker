@@ -2,10 +2,10 @@
   <div
   :class="['value']">
     <h3>
-      {{ value.text }}
+      {{ value.month }} {{ value.year }}
       <i @click="$emit('delete-value', value.id)" class="fas fa-times"></i>
     </h3>
-    <p>{{ value.day }}</p>
+    <p>{{ value.rainfall }} liter</p>
   </div>
 </template>
 

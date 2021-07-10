@@ -2,18 +2,75 @@
   "values": [
     {
       "id": 1,
-      "text": "Doctors Appointment",
-      "day": "March 1st at 2:30pm"
+      "rainfall": 41,
+      "month": "Januari",
+      "year": "2020"
+    },
+    {
+      "id": 2,
+      "rainfall": 138,
+      "month": "Februari",
+      "year": "2020"
     },
     {
       "id": 3,
-      "text": "Food Shopping",
-      "day": "March 3rd at 11:00am"
+      "rainfall": 81,
+      "month": "Maart",
+      "year": "2020"
     },
     {
-      "text": "Covid test",
-      "day": "Today 10:15am",
-      "id": 4
+      "id": 4,
+      "rainfall": 14,
+      "month": "April",
+      "year": "2020"
+    },
+    {
+      "id": 5,
+      "rainfall": 36,
+      "month": "Mei",
+      "year": "2020"
+    },
+    {
+      "id": 6,
+      "rainfall": 101,
+      "month": "Juni",
+      "year": "2020"
+    },
+    {
+      "id": 7,
+      "rainfall": 91,
+      "month": "Juli",
+      "year": "2020"
+    },
+    {
+      "id": 8,
+      "rainfall": 70,
+      "month": "Augustus",
+      "year": "2020"
+    },
+    {
+      "id": 9,
+      "rainfall": 63,
+      "month": "September",
+      "year": "2020"
+    },
+    {
+      "id": 10,
+      "rainfall": 97,
+      "month": "Oktober",
+      "year": "2020"
+    },
+    {
+      "id": 11,
+      "rainfall": 43,
+      "month": "November",
+      "year": "2020"
+    },
+    {
+      "id": 12,
+      "rainfall": 85,
+      "month": "December",
+      "year": "2020"
     }
   ]
 }

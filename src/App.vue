@@ -5,13 +5,15 @@
         :showAddValue="showAddValue"
         title="Neerslag in Wuustwezel"
     />
+    <div v-if="showAddValue">
+      <AddValue @add-value="addValue" />
+    </div>
+  </div>
+  <div class="container">
     <Values
         @delete-value="deleteValue"
         :values="values"
     />
-    <div v-if="showAddValue">
-      <AddValue @add-value="addValue" />
-    </div>
   </div>
 </template>
 
@@ -30,7 +32,7 @@ export default {
   data() {
     return {
       values: [],
-      showAddValue: false,
+      showAddValue: true,
     };
   },
   methods: {
@@ -90,7 +92,6 @@ body {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
-  min-height: 300px;
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
