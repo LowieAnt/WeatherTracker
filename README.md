@@ -1,4 +1,4 @@
-# het-weer-in-wuustwezel
+# WeatherTracker
 
 ## Project setup
 ```
