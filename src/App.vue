@@ -21,6 +21,9 @@
       />
     </div>
   </div>
+  <div class="container" id="barchartcontainer">
+    <BarChart/>
+  </div>
 </template>
 
 <script>
@@ -28,6 +31,8 @@ import Header from "./components/Header";
 import Values from "./components/Values";
 import AddValue from "@/components/AddValue";
 import ValueList from "@/components/ValueList";
+import Chart from "chart.js";
+import BarChart from "@/components/BarChart";
 
 export default {
   name: "App",
@@ -35,13 +40,18 @@ export default {
     Header,
     Values,
     AddValue,
-    ValueList
+    ValueList,
+    BarChart
   },
   data() {
     return {
       values: [],
       showAddValue: false,
       showViewAll: false,
+      rainfalls: [],
+      months: [],
+      backgroundColors: [],
+      borderColors: []
     };
   },
   methods: {
@@ -83,9 +93,48 @@ export default {
       const res = await fetch("api/values/" + id);
       return await res.json();
     },
+    async makeArrays() {
+      await fetch("api/values")
+          .then(res => res.json())
+          .then(values => {
+            Array.from(values).forEach(value => {
+              this.months.push(value.month + " " + value.year)
+              this.rainfalls.push(value.rainfall)
+              this.backgroundColors.push('rgba(54, 162, 235, 0.2)')
+              this.borderColors.push('rgba(54, 162, 235, 1)')
+            })
+          })
+          .then(() => {
+            this.makeBarChart()
+          })
+    },
+    async makeBarChart() {
+      const ctx = document.getElementById('barChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: this.months,
+          datasets: [{
+            label: 'Hoeveelheid neerslag',
+            data: this.rainfalls,
+            backgroundColor: this.backgroundColors,
+            borderColor: this.borderColors,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
   },
   async created() {
     this.values = await this.fetchValues();
+    await this.makeArrays();
   },
 };
 </script>
@@ -132,14 +181,17 @@ body {
   width: 100%;
 }
 #headercontainer {
-  margin-top: 50px;
+  margin-top: 0;
   margin-left: 50px;
   float: left;
   padding: 20px;
 }
 #valuecontainer {
-  margin-top: 50px;
+  margin-top: 0;
   margin-right: 50px;
   float: right;
+}
+#barchartcontainer {
+  margin-top: 50px;
 }
 </style>
