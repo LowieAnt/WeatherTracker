@@ -1,6 +1,7 @@
 <template>
   <div
-  :class="['value']">
+  :class="['value']"
+  :style="{ background: color }">
     <h3>
       {{ value.month }} {{ value.year }}
       <i @click="$emit('delete-value', value.id)" class="fas fa-times"></i>
@@ -14,6 +15,7 @@ export default {
   name: "Value",
   props: {
     value: Object,
+    color: String,
   },
 };
 </script>

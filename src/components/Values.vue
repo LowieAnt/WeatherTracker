@@ -1,10 +1,11 @@
 <template>
-  <div :key="value.id" v-for="value in values">
-    <Value
-      @delete-value="$emit('delete-value', value.id)"
-      :value="value"
-    />
-  </div>
+    <div :key="value.id" v-for="value in values">
+      <Value
+          @delete-value="$emit('delete-value', value.id)"
+          :value="value"
+          :color="value.rainfall > 60 ? '#ff968f' : '#abd9af'"
+      />
+    </div>
 </template>
 
 <script>
@@ -14,6 +15,7 @@ export default {
   name: "Values",
   props: {
     values: Array,
+    showViewAll: Boolean,
   },
   components: {
     Value,

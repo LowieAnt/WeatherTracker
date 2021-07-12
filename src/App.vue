@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="headercontainer">
     <Header
         @toggle-add-value="toggleAddValue()"
         :showAddValue="showAddValue"
@@ -9,11 +9,18 @@
       <AddValue @add-value="addValue" />
     </div>
   </div>
-  <div class="container">
-    <Values
-        @delete-value="deleteValue"
-        :values="values"
+  <div class="container" id="valuecontainer">
+    <ValueList
+      @toggle-view-all="toggleViewAll()"
+      :showViewall="showViewAll"
     />
+    <div v-if="showViewAll">
+      <Values
+          @toggle-view-all="toggleViewAll()"
+          @delete-value="deleteValue"
+          :values="values"
+      />
+    </div>
   </div>
 </template>
 
@@ -21,6 +28,7 @@
 import Header from "./components/Header";
 import Values from "./components/Values";
 import AddValue from "@/components/AddValue";
+import ValueList from "@/components/ValueList";
 
 export default {
   name: "App",
@@ -28,14 +36,20 @@ export default {
     Header,
     Values,
     AddValue,
+    ValueList
   },
   data() {
     return {
       values: [],
-      showAddValue: true,
+      showAddValue: false,
+      showViewAll: false,
     };
   },
   methods: {
+    toggleViewAll() {
+      this.showViewAll = !this.showViewAll
+      console.log(this.showViewAll)
+    },
     async addValue(value) {
       const res = await fetch("api/values", {
         method: "POST",
@@ -93,7 +107,7 @@ body {
   margin: 30px auto;
   overflow: auto;
   border: 1px solid steelblue;
-  padding: 30px;
+  padding: 10px;
   border-radius: 5px;
 }
 .btn {
@@ -118,5 +132,16 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+}
+#headercontainer {
+  margin-top: 50px;
+  margin-left: 50px;
+  float: left;
+  padding: 20px;
+}
+#valuecontainer {
+  margin-top: 50px;
+  margin-right: 50px;
+  float: right;
 }
 </style>
