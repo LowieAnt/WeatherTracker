@@ -14,7 +14,7 @@
       />
     </div>
     <div class="form-control">
-      <label>Maand</label>
+      <label>Jaar</label>
       <input
           type="text"
           v-model="year"
