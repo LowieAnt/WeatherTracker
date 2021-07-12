@@ -100,8 +100,27 @@ export default {
             Array.from(values).forEach(value => {
               this.months.push(value.month + " " + value.year)
               this.rainfalls.push(value.rainfall)
-              this.backgroundColors.push('rgba(54, 162, 235, 0.2)')
-              this.borderColors.push('rgba(54, 162, 235, 1)')
+              switch (value.year) {
+                case "2020":
+                  this.backgroundColors.push('rgba(54, 162, 235, 0.2)');
+                  this.borderColors.push('rgba(54, 162, 235, 1)');
+                  break;
+                case "2021":
+                  this.backgroundColors.push('rgba(255, 206, 86, 0.2)');
+                  this.borderColors.push('rgba(255, 206, 86, 1)');
+                  break;
+                case "2022":
+                  this.backgroundColors.push('rgba(153, 102, 255, 0.2)');
+                  this.borderColors.push('rgba(153, 102, 255, 1)');
+                  break;
+                case "2023":
+                  this.backgroundColors.push('rgba(255, 99, 132, 0.2)');
+                  this.borderColors.push('rgba(255, 99, 132, 1)');
+                  break;
+                default:
+                  this.backgroundColors.push('rgba(255, 206, 86, 0.2)');
+                  this.borderColors.push('rgba(255, 206, 86, 1)');
+              }
             })
           })
           .then(() => {
