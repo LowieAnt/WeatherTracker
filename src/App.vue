@@ -16,7 +16,6 @@
     />
     <div v-if="showViewAll">
       <Values
-          @toggle-view-all="toggleViewAll()"
           @delete-value="deleteValue"
           :values="values"
       />
@@ -48,7 +47,6 @@ export default {
   methods: {
     toggleViewAll() {
       this.showViewAll = !this.showViewAll
-      console.log(this.showViewAll)
     },
     async addValue(value) {
       const res = await fetch("api/values", {
