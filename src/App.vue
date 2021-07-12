@@ -46,8 +46,8 @@ export default {
   data() {
     return {
       values: [],
-      showAddValue: false,
-      showViewAll: false,
+      showAddValue: true,
+      showViewAll: true,
       rainfalls: [],
       months: [],
       backgroundColors: [],
@@ -89,6 +89,7 @@ export default {
       }
       const data = await res.json();
       this.values = [...this.values, data];
+      window.location.reload();
     },
     toggleAddValue() {
       this.showAddValue = !this.showAddValue;
