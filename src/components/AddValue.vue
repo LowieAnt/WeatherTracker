@@ -1,20 +1,29 @@
 <template>
   <form @submit="onSubmit" class="add-form">
     <div class="form-control">
-      <label>Task</label>
-      <input type="text" v-model="text" name="text" placeholder="Add Value" />
+      <label>Neerslag</label>
+      <input type="text" v-model="rainfall" name="rainfall" placeholder="Neerslag" />
     </div>
     <div class="form-control">
-      <label>Day & Time</label>
+      <label>Maand</label>
       <input
         type="text"
-        v-model="day"
-        name="day"
-        placeholder="Add Day & Time"
+        v-model="month"
+        name="month"
+        placeholder="Maand van observatie"
+      />
+    </div>
+    <div class="form-control">
+      <label>Maand</label>
+      <input
+          type="text"
+          v-model="year"
+          name="year"
+          placeholder="Jaar van observatie"
       />
     </div>
 
-    <input type="submit" value="Save value" class="btn btn-block" />
+    <input type="submit" value="Opslaan" class="btn btn-block" />
   </form>
 </template>
 
@@ -23,23 +32,27 @@ export default {
   name: "AddValue",
   data() {
     return {
-      text: "",
-      day: ""
+      rainfall: null,
+      month: "",
+      year: ""
     };
   },
   methods: {
     onSubmit(e) {
       e.preventDefault();
-      if (!this.text) {
-        alert("Please add a value!");
+      if (this.rainfall == null) {
+        alert("Voeg neerslag toe!");
+        return false
       }
       const newValue = {
-        text: this.text,
-        day: this.day,
+        rainfall: this.rainfall,
+        month: this.month,
+        year: this.year,
       };
       this.$emit("add-value", newValue);
-      this.text = "";
-      this.day = "";
+      this.rainfall = null;
+      this.month = "";
+      this.year = "";
     },
   },
 };

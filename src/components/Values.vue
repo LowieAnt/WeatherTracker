@@ -3,7 +3,7 @@
       <Value
           @delete-value="$emit('delete-value', value.id)"
           :value="value"
-          :color="value.rainfall > 60 ? '#ff968f' : '#abd9af'"
+          :color="value.rainfall > 80 ? '#ff968f' : '#abd9af'"
       />
     </div>
 </template>

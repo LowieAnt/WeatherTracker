@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     toggleViewAll() {
-      this.showViewAll = !this.showViewAll
+      this.showViewAll = !this.showViewAll;
     },
     async addValue(value) {
       const res = await fetch("api/values", {
