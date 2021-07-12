@@ -59,13 +59,34 @@ export default {
       this.showViewAll = !this.showViewAll;
     },
     async addValue(value) {
-      const res = await fetch("api/values", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(value),
+      let res;
+      const currentMonth = await this.fetchValue(this.values.length).then(value => {
+        return value.month
       });
+      const currentYear = await this.fetchValue(this.values.length).then(value => {
+        return value.year
+      })
+      const currentRainfall = await this.fetchValue(this.values.length).then(value => {
+        return value.rainfall
+      })
+      if (currentMonth === value.month && currentYear === value.year) {
+        value.rainfall = +currentRainfall + +value.rainfall
+        res = await fetch("api/values/" + this.values.length, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(value),
+        });
+      } else {
+        res = await fetch("api/values", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(value),
+        });
+      }
       const data = await res.json();
       this.values = [...this.values, data];
     },
